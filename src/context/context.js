@@ -1,30 +1,47 @@
-import { useState, useEffect, createContext } from "react";
-import auth from "../services/firebaseConfig";
+import { useEffect, useState, createContext } from "react";
+import auth, { firestore } from "../services/firebaseConfig";
 
 export const AppContext = createContext();
 
-const ContextProvider = (props) => {
-  // declaring pieces of states in the context layer to access globally from anywhere inside the application
+const AppContextProvder = (props) => {
+  // User's piece of state
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
-
-  //   To check if auth / user is logged in already or not
+  // const [comments, setComments] = useState([]);
+  // Checking if user exists, whenever we reload the tab
   auth.onAuthStateChanged((firebaseUser) => {
     if (firebaseUser.uid) {
       setUser(firebaseUser);
     }
   });
 
-  //   useEffect(() => {}, []);
+  function getPosts() {
+    let docs = [];
+    firestore
+      .collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        snapshot.docs.map((doc) => docs.push({ id: doc.id, post: doc.data() }))
+      );
+    setPosts(docs);
+  }
+
+  useEffect(() => {
+    getPosts();
+    console.log("mapped");
+  }, []);
+
   return (
     <AppContext.Provider
+      // These values can be used whenever and wherver the component lies if AuthContext Provider has the parent consumer within itself
       value={{
         user: [user, setUser],
         posts: [posts, setPosts],
       }}
     >
-      {props.childern}
+      {props.children}
     </AppContext.Provider>
   );
 };
-export default ContextProvider;
+
+export default AppContextProvder;

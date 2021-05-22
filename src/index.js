@@ -4,14 +4,14 @@ import "./index.css";
 import App from "./App";
 import theme from "./theme/theme";
 import { ChakraProvider } from "@chakra-ui/react";
-import ContextProvider from "./context/context";
+import AppContextProvider from "./context/context";
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <ContextProvider>
+      <AppContextProvider>
         <App />
-      </ContextProvider>
+      </AppContextProvider>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")
