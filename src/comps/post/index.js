@@ -1,6 +1,7 @@
 import { Image } from "@chakra-ui/image";
 import { Box, Container, Flex, Text } from "@chakra-ui/layout";
-
+import { AvatarImg } from "..";
+import "./styles.css";
 const Post = ({
   id,
   caption,
@@ -11,7 +12,6 @@ const Post = ({
   //   likes,
   timestamp,
 }) => {
-  console.log(caption);
   return (
     <Box
       key={id}
@@ -29,7 +29,7 @@ const Post = ({
         p={1}
         borderBottom="1px solid lightgrey"
       >
-        <img className="avatar feed-avatar" src={photoUrL} alt="" />
+        <AvatarImg name={userName} src={photoUrL} />
         {/* <Badge colorScheme="pink">{userName}</Badge> */}
         <Text ml={2} fontSize="sm" fontWeight="bold" color="#fafafa">
           {userName}
