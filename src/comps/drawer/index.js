@@ -1,5 +1,6 @@
-import { Button } from "@chakra-ui/button";
+import { FiMenu } from "react-icons/fi";
 import { useDisclosure } from "@chakra-ui/hooks";
+
 import {
   Drawer,
   DrawerBody,
@@ -7,6 +8,8 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
+  IconButton,
+  Box,
   //   DrawerCloseButton,
 } from "@chakra-ui/react";
 
@@ -15,9 +18,11 @@ const DrawerComp = () => {
 
   return (
     <>
-      <Button colorScheme="blue" onClick={onOpen}>
-        Open
-      </Button>
+      <Box hover={{ bg: "var(--primary)" }}>
+        <IconButton icon={<FiMenu />} color="var(--secondary)" onClick={onOpen}>
+          Open
+        </IconButton>
+      </Box>
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
