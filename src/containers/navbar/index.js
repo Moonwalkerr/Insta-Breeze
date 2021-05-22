@@ -1,5 +1,5 @@
-import { Flex, Heading } from "@chakra-ui/react";
-import { DrawerComp, SignInBtn } from "../../comps/";
+import { Avatar, Flex, Heading } from "@chakra-ui/react";
+import { AvatarImg, DrawerComp, SignInBtn } from "../../comps/";
 import { useContext } from "react";
 import { AppContext } from "../../context/context";
 
@@ -23,8 +23,11 @@ const Navbar = () => {
         >
           Insta-Breeze
         </Heading>
-
-        <SignInBtn />
+        {user ? (
+          <AvatarImg name={user.displayName} src={user.photoURL} />
+        ) : (
+          <SignInBtn />
+        )}
       </Flex>
     </header>
   );
