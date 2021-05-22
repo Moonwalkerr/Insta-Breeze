@@ -74,7 +74,7 @@ const DrawerComp = () => {
                 Settings
               </Button>
               <Button
-                leftIcon={<RiDashboardLine />}
+                leftIcon={<MdCall />}
                 colorScheme="purple"
                 variant="outline"
               >

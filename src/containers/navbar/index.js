@@ -1,8 +1,8 @@
 import { Flex, Heading } from "@chakra-ui/react";
-import { DrawerComp, SignInBtn } from "..";
+import { DrawerComp, SignInBtn } from "../../comps/";
 import { useContext } from "react";
-import "./styles.css";
 import { AppContext } from "../../context/context";
+
 const Navbar = () => {
   const user = useContext(AppContext).user[0];
   return (
