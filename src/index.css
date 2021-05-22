@@ -45,7 +45,7 @@ body {
   letter-spacing: 3px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--secondary);
+  background-color: var(--secondary) !important;
   /* from purple color pallete */
 }
 
