@@ -64,7 +64,7 @@ const Post = ({
             color="#fafafa"
           ></Text>
         </Flex>
-        <PostMenu key={id} id={id} />
+        {user.displayName === userName && <PostMenu key={id} id={id} />}
       </Flex>
       {imageUrl ? (
         <Image
