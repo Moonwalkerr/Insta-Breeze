@@ -15,19 +15,24 @@ const AppContextProvder = (props) => {
     }
   });
 
-  async function getPosts() {
-    await firestore
-      .collection("posts")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) =>
-        setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      )
-      .catc((err) => alert(err.message));
-  }
+  const [doc, setDoc] = useState([]);
 
   useEffect(() => {
-    getPosts();
+    let unsubscribe = setPosts(async () => {
+      var documents = [];
+      await firestore
+        .collection("posts")
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) => {
+          snapshot.forEach((doc) => {
+            documents.push({ ...doc.data(), id: doc.id });
+            // console.log(doc.data());
+          });
+          return documents;
+        });
+    });
     console.log("mapped");
+    return unsubscribe;
   }, []);
 
   return (
