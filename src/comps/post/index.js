@@ -31,7 +31,9 @@ const Post = ({
       key={id}
       mb={5}
       bg="#fafafa"
-      // p="1"
+      _hover={{ boxShadow: "1px 2px 2px 6px rgba(0, 0, 0, 0.28)" }}
+      boxShadow="1px 1px 3px 5px rgba(0, 0, 0, 0.18)"
+      transition="box-shadow 0.3s"
       maxW="700px"
       borderRadius="6"
     >

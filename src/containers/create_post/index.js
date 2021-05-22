@@ -40,8 +40,8 @@ const Createpost = () => {
           );
         },
         (error) => alert(error.message),
-        () => {
-          let image_url = storageRef.getDownloadURL();
+        async () => {
+          let image_url = await storageRef.getDownloadURL();
           let data = {
             userName: user.displayName,
             photoUrl: user.photoURL,

@@ -20,7 +20,6 @@ const PostFeeds = () => {
 
   return (
     <Flex
-      width="100vw"
       flexDirection="column"
       flexWrap="nowrap"
       alignItems="center"
@@ -32,6 +31,7 @@ const PostFeeds = () => {
           <Post
             key={id}
             id={id}
+            likes={post.likes}
             timestamp={post.timestamp}
             imageUrl={post.imageUrl}
             userName={post.userName}
