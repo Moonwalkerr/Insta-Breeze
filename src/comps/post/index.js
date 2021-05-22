@@ -76,42 +76,41 @@ const Post = ({
           src={imageUrl}
         />
       )}
-      <Text
-        float="left"
-        mt={2}
-        ml={2}
-        color="purple.700"
-        fontSize="xl"
-        fontWeight="bold"
-        lineHeight="short"
-      >
-        {caption}
-      </Text>
-      <Button
-        onClick={() => addLike(id)}
-        _focus={{
-          border: "none",
-          outline: "none",
-        }}
-        color="var(--secondary)"
-        leftIcon={<GrLike />}
-        variant="solid"
-        float="right"
-        mt={2}
-      >
-        {likes}
-      </Button>
-
+      <Flex justifyContent="space-between">
+        <Text
+          mt={2}
+          ml={2}
+          color="purple.700"
+          fontSize="xl"
+          fontWeight="bold"
+          lineHeight="short"
+        >
+          {caption}
+        </Text>
+        <Button
+          onClick={() => addLike(id)}
+          _focus={{
+            border: "none",
+            outline: "none",
+          }}
+          color="var(--secondary)"
+          leftIcon={<GrLike />}
+          variant="solid"
+          mt={2}
+        >
+          {likes}
+        </Button>
+      </Flex>
       <Flex flexDirection="column" mt={3} align="center">
         {comments ? (
           comments.map((comment) => (
-            <Comment username={comment.username} caption={comment.comment} />
+            <Comment username={comment.userName} comment={comment.comment} />
           ))
         ) : (
           <></>
         )}
       </Flex>
-      {user ? <CommentInput comments={comments} id={id} /> : <></>}
+      {user ? <CommentInput key={id} comments={comments} id={id} /> : <></>}
     </Box>
   );
 };
