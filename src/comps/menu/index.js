@@ -7,9 +7,24 @@ import {
 } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiTwotoneDelete } from "react-icons/ai";
-const PostMenu = () => {
+import { firestore } from "../../services/firebaseConfig";
+const PostMenu = (id) => {
+  const deletePost = () => {
+    let userConfirmation = window.confirm(
+      "Do you really want to delete this image from your gallery?"
+    );
+    if (userConfirmation) {
+      firestore
+        .collection("posts")
+        .doc(id)
+        .delete()
+        .then(() => {
+          alert("Deleted Successfully");
+        });
+    }
+  };
   return (
-    <Menu>
+    <Menu key={id}>
       <MenuButton
         as={IconButton}
         aria-label="Options"
@@ -17,7 +32,7 @@ const PostMenu = () => {
         variant="outline"
       />
       <MenuList>
-        <MenuItem icon={<AiTwotoneDelete />} command="⌘T">
+        <MenuItem onClick={deletePost} icon={<AiTwotoneDelete />} command="⌘T">
           Delete
         </MenuItem>
         {/* <MenuItem icon={<ExternalLinkIcon />} command="⌘N">
