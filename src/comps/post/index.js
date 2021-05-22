@@ -1,57 +1,64 @@
+import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
-import { Box, Container, Flex, Text } from "@chakra-ui/layout";
+import { Box, Flex, Text } from "@chakra-ui/layout";
 import { AvatarImg } from "..";
 import "./styles.css";
+import { GrLike } from "react-icons/gr";
+
 const Post = ({
   id,
   caption,
   userName,
   photoUrL,
-  imageUrL,
+  imageUrl,
   //   comments,
-  //   likes,
+  likes,
   timestamp,
 }) => {
   return (
     <Box
       key={id}
       mb={5}
-      className="post_container"
       bg="#fafafa"
       // p="1"
-      maxW="48vw"
-      borderRadius="4"
+      maxW="700px"
+      borderRadius="6"
     >
       <Flex
+        width="100%"
+        borderRadius="6"
         align="center"
-        borderRadius="4"
         bg="#49275B"
         p={1}
         borderBottom="1px solid lightgrey"
       >
         <AvatarImg name={userName} src={photoUrL} />
-        {/* <Badge colorScheme="pink">{userName}</Badge> */}
         <Text ml={2} fontSize="sm" fontWeight="bold" color="#fafafa">
           {userName}
         </Text>
-        <Text ml={260} fontSize="10" fontWeight="bold" color="#fafafa">
+        <Text
+          float="right"
+          ml={340}
+          fontSize="10"
+          fontWeight="bold"
+          color="#fafafa"
+        >
           {/* Firebase timestamp to Date() and removing time part */}
           {new Date(timestamp?.toDate()).toDateString()}
         </Text>
       </Flex>
-      {imageUrL ? (
+      {imageUrl && (
         <Image
           mt="1"
           height="50vh"
           width="100%"
           objectFit="cover"
           borderRadius="md"
-          src={imageUrL}
+          src={imageUrl}
         />
-      ) : (
-        <></>
       )}
       <Text
+        float="left"
         mt={2}
         ml={2}
         color="purple.700"
@@ -61,7 +68,18 @@ const Post = ({
       >
         {caption}
       </Text>
-      <Text mt={2}>$119/night</Text>
+      <Button
+        // onClick={signInWithGoogle}
+        // fontSize={14}
+        // letterSpacing={1}
+        color="var(--secondary)"
+        leftIcon={<GrLike />}
+        variant="solid"
+        float="right"
+        mt={2}
+      >
+        {likes}
+      </Button>
       <Flex flexDirection="column" mt={3} align="center">
         {/* {comments.length > 0 ? (
             comments.map((comment, value) => {
