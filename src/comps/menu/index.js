@@ -8,7 +8,11 @@ import {
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { firestore } from "../../services/firebaseConfig";
+import { useToast } from "@chakra-ui/react";
+
 const PostMenu = ({ id }) => {
+  // toast for showing delete success display
+  const toast = useToast();
   const deletePost = () => {
     let userConfirmation = window.confirm(
       "Do you really want to delete this image from your gallery?"
@@ -18,9 +22,16 @@ const PostMenu = ({ id }) => {
         .collection("posts")
         .doc(id)
         .delete()
-        .then(() => {
-          alert("Deleted Successfully");
-        });
+        .then(() =>
+          toast({
+            title: "Successfuly deleted.",
+            position: "top",
+            description: "The Post has been deleted from your storage",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          })
+        );
     }
   };
   return (
