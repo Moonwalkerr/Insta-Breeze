@@ -2,7 +2,7 @@ import { Flex, Heading } from "@chakra-ui/react";
 import { AvatarImg, DrawerComp, SignInBtn } from "../../comps/";
 import { useContext } from "react";
 import { AppContext } from "../../context/context";
-
+import { GiWindSlap } from "react-icons/gi";
 const Navbar = () => {
   const user = useContext(AppContext).user[0];
   return (
@@ -22,13 +22,15 @@ const Navbar = () => {
       >
         <DrawerComp />
         <Heading
-          ml={20}
           fontStyle="italic"
           fontFamily="'Lora', serif"
           letterSpacing={6}
           fontSize={"2rem"}
         >
-          Insta-Breeze
+          <Flex>
+            Insta-Breeze
+            <GiWindSlap />
+          </Flex>
         </Heading>
         {user ? (
           <AvatarImg name={user.displayName} src={user.photoURL} />
