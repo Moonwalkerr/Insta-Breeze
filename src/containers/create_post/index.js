@@ -43,6 +43,7 @@ const Createpost = () => {
         async () => {
           let image_url = await storageRef.getDownloadURL();
           let data = {
+            userId: user.uid,
             userName: user.displayName,
             photoUrl: user.photoURL,
             imageUrl: image_url,
@@ -56,6 +57,7 @@ const Createpost = () => {
       );
     } else {
       let data = {
+        userId: user.uid,
         userName: user.displayName,
         photoUrl: user.photoURL,
         caption: caption,
