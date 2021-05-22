@@ -16,6 +16,7 @@ const Navbar = () => {
       >
         <DrawerComp />
         <Heading
+          ml={20}
           fontStyle="italic"
           fontFamily="'Lora', serif"
           letterSpacing={6}
