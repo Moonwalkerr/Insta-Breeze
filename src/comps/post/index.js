@@ -1,21 +1,26 @@
 import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Text } from "@chakra-ui/layout";
-import { AvatarImg } from "..";
+import { AvatarImg, Comment } from "..";
 import "./styles.css";
 import { GrLike } from "react-icons/gr";
 import { firestore } from "../../services/firebaseConfig";
-
+import CommentInput from "../commentInput";
+import { useContext } from "react";
+import { AppContext } from "../../context/context";
 const Post = ({
   id,
   caption,
   userName,
   photoUrL,
   imageUrl,
-  //   comments,
+  comments,
   likes,
   timestamp,
 }) => {
+  // fetcing user's state from context layer
+
+  const user = useContext(AppContext).user[0];
   // Adding like method
   const addLike = (postId) => {
     firestore
@@ -28,6 +33,7 @@ const Post = ({
 
   return (
     <Box
+      p={2}
       key={id}
       mb={5}
       bg="#fafafa"
@@ -97,21 +103,15 @@ const Post = ({
       </Button>
 
       <Flex flexDirection="column" mt={3} align="center">
-        {/* {comments.length > 0 ? (
-            comments.map((comment, value) => {
-              return (
-                <Comment
-                  key={value}
-                  comment={comment.comment}
-                  userName={comment.userName}
-                />
-              );
-            })
-          ) : (
-            <h4>No Comments Yet</h4>
-          )} */}
+        {comments ? (
+          comments.map((comment) => (
+            <Comment username={comment.username} caption={comment.comment} />
+          ))
+        ) : (
+          <></>
+        )}
       </Flex>
-      {/* {user && <CommentsInputBox id={id} comments={comments} />} */}
+      {user ? <CommentInput comments={comments} id={id} /> : <></>}
     </Box>
   );
 };
