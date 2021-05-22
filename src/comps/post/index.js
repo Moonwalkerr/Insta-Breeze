@@ -4,6 +4,7 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { AvatarImg } from "..";
 import "./styles.css";
 import { GrLike } from "react-icons/gr";
+import { firestore } from "../../services/firebaseConfig";
 
 const Post = ({
   id,
@@ -15,6 +16,16 @@ const Post = ({
   likes,
   timestamp,
 }) => {
+  // Adding like method
+  const addLike = (postId) => {
+    firestore
+      .collection("posts")
+      .doc(postId)
+      .update({
+        likes: likes + 1,
+      });
+  };
+
   return (
     <Box
       key={id}
@@ -69,9 +80,11 @@ const Post = ({
         {caption}
       </Text>
       <Button
-        // onClick={signInWithGoogle}
-        // fontSize={14}
-        // letterSpacing={1}
+        onClick={() => addLike(id)}
+        _focus={{
+          border: "none",
+          outline: "none",
+        }}
         color="var(--secondary)"
         leftIcon={<GrLike />}
         variant="solid"
@@ -80,6 +93,7 @@ const Post = ({
       >
         {likes}
       </Button>
+
       <Flex flexDirection="column" mt={3} align="center">
         {/* {comments.length > 0 ? (
             comments.map((comment, value) => {
