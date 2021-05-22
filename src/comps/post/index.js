@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
-import { Box, Flex, Text } from "@chakra-ui/layout";
+import { Box, Flex, Spacer, Text } from "@chakra-ui/layout";
 import { AvatarImg, Comment } from "..";
 import "./styles.css";
 import { GrLike } from "react-icons/gr";
@@ -40,17 +40,11 @@ const Post = ({
       _hover={{ boxShadow: "1px 2px 2px 6px rgba(0, 0, 0, 0.28)" }}
       boxShadow="1px 1px 3px 5px rgba(0, 0, 0, 0.18)"
       transition="box-shadow 0.3s"
+      minW="700px"
       maxW="700px"
       borderRadius="6"
     >
-      <Flex
-        width="100%"
-        borderRadius="6"
-        align="center"
-        bg="#49275B"
-        p={1}
-        borderBottom="1px solid lightgrey"
-      >
+      <Flex width="100%" borderRadius="6" align="center" bg="#49275B" p={1}>
         <AvatarImg name={userName} src={photoUrL} />
         <Text ml={2} fontSize="sm" fontWeight="bold" color="#fafafa">
           {userName}
@@ -63,10 +57,9 @@ const Post = ({
           color="#fafafa"
         >
           {/* Firebase timestamp to Date() and removing time part */}
-          {new Date(timestamp?.toDate()).toDateString()}
         </Text>
       </Flex>
-      {imageUrl && (
+      {imageUrl ? (
         <Image
           mt="1"
           height="50vh"
@@ -75,31 +68,42 @@ const Post = ({
           borderRadius="md"
           src={imageUrl}
         />
+      ) : (
+        <Spacer mt={4} />
       )}
-      <Flex justifyContent="space-between">
+      <Flex
+        borderBottom="1px solid lightgrey"
+        alignItems="center"
+        justifyContent="space-between"
+      >
         <Text
           mt={2}
           ml={2}
           color="purple.700"
-          fontSize="xl"
+          fontSize="lg"
           fontWeight="bold"
           lineHeight="short"
         >
           {caption}
+          {/* <p style={{ fontSize: "10px" }}>
+            {new Date(timestamp?.toDate()).toDateString()}
+          </p> */}
         </Text>
-        <Button
-          onClick={() => addLike(id)}
-          _focus={{
-            border: "none",
-            outline: "none",
-          }}
-          color="var(--secondary)"
-          leftIcon={<GrLike />}
-          variant="solid"
-          mt={2}
-        >
-          {likes}
-        </Button>
+        {user && (
+          <Button
+            onClick={() => addLike(id)}
+            _focus={{
+              border: "none",
+              outline: "none",
+            }}
+            color="var(--secondary)"
+            leftIcon={<GrLike />}
+            variant="solid"
+            mt={2}
+          >
+            {likes}
+          </Button>
+        )}
       </Flex>
       <Flex flexDirection="column" mt={3} align="center">
         {comments ? (

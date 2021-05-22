@@ -29,7 +29,6 @@ const CommentInput = ({ comments, id }) => {
         className="comment_input"
         onChange={(e) => setComment(e.target.value)}
         placeholder="Leave a comment ..."
-        size="xs"
       />
       <button type="submit" display="none" />
     </form>
