@@ -1,9 +1,10 @@
-import { Navbar } from "../../containers";
+import { CreatePost, Navbar } from "../../containers";
 
 const HomePage = () => {
   return (
     <>
       <Navbar />
+      <CreatePost />
     </>
   );
 };
