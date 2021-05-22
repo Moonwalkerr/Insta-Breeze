@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 
 const SignInBtn = () => {
   return (
-    <Box hover={{ bg: "var(--primary)" }}>
+    <Box borderRadius="14px" _hover={{ bg: "var(--primary)" }}>
       <Button
         fontSize={14}
         letterSpacing={1}
