@@ -1,0 +1,20 @@
+.create__post {
+    box-shadow: 1px 1px 3px 5px rgba(0, 0, 0, 0.18);
+    transition: box-shadow 0.3s;
+}
+
+.create__post:hover {
+    box-shadow: 1px 1px 4px 5px rgba(0, 0, 0, 0.26);
+}
+
+#fileInput,
+#image-prev {
+    display: none;
+}
+
+
+#image-prev {
+    margin: 10px 0px;
+    width: 55px;
+    height: 60px;
+}
