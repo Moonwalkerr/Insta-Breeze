@@ -11,6 +11,7 @@ const Post = ({
   //   likes,
   timestamp,
 }) => {
+  console.log(caption);
   return (
     <Box
       key={id}
