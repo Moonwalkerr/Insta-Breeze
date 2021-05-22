@@ -19,7 +19,6 @@ const Navbar = () => {
         p={4}
         justifyContent="space-between"
         bg="var(--secondary)"
-        mb={100}
       >
         <DrawerComp />
         <Heading
