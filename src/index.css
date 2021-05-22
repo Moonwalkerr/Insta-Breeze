@@ -8,8 +8,8 @@ serif;  : for headings and main text purposes  Font weight avail : 700, 700 ital
 
 
 :root{
-  --primary:#4A4063;
-  --secondary:#CCB8D6;
+  --primary:#CCB8D6;
+  --secondary:#4A4063;
 }
 
 * {
@@ -45,7 +45,7 @@ body {
   letter-spacing: 3px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--secondary) !important;
+  background-color: var(--primary) !important;
   /* from purple color pallete */
 }
 
