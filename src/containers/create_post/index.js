@@ -1,3 +1,4 @@
+import "./styles.css";
 import { useContext, useState } from "react";
 import { SignInBtn } from "../../comps";
 import { AppContext } from "../../context/context";
