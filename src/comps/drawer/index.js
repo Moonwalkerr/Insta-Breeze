@@ -2,6 +2,8 @@ import { FiMenu } from "react-icons/fi";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { MdBuild, MdCall } from "react-icons/md";
 import { RiDashboardLine } from "react-icons/ri";
+import { useContext } from "react";
+import { AppContext } from "../../context/context";
 import {
   Drawer,
   DrawerBody,
@@ -16,10 +18,11 @@ import {
   Text,
   //   DrawerCloseButton,
 } from "@chakra-ui/react";
-import { LogoutBtn } from "..";
+import { LogoutBtn, SignInBtn } from "..";
 
 const DrawerComp = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const user = useContext(AppContext).user[0];
 
   return (
     <>
@@ -55,34 +58,44 @@ const DrawerComp = () => {
             color="#fafafa"
             borderBottomWidth="1px"
           >
-            <Text fontSize="24px">Abhishek Mishra</Text>
-            <Text fontSize={12}> abhisk.mhra@gmail.com</Text>
+            {user ? (
+              <>
+                <Text fontSize="24px">Abhishek Mishra</Text>
+                <Text fontSize={12}> abhisk.mhra@gmail.com</Text>
+              </>
+            ) : (
+              <Text fontSize="24px">Please Sign in to Continue</Text>
+            )}
           </DrawerHeader>
           <DrawerBody>
-            <Stack spacing={4}>
-              <Button
-                leftIcon={<RiDashboardLine />}
-                colorScheme="purple"
-                variant="outline"
-              >
-                Dashboard
-              </Button>
-              <Button
-                leftIcon={<MdBuild />}
-                colorScheme="purple"
-                variant="outline"
-              >
-                Settings
-              </Button>
-              <Button
-                leftIcon={<MdCall />}
-                colorScheme="purple"
-                variant="outline"
-              >
-                Call us
-              </Button>
-              <LogoutBtn />
-            </Stack>
+            {user ? (
+              <Stack spacing={4}>
+                <Button
+                  leftIcon={<RiDashboardLine />}
+                  colorScheme="purple"
+                  variant="outline"
+                >
+                  Dashboard
+                </Button>
+                <Button
+                  leftIcon={<MdBuild />}
+                  colorScheme="purple"
+                  variant="outline"
+                >
+                  Settings
+                </Button>
+                <Button
+                  leftIcon={<MdCall />}
+                  colorScheme="purple"
+                  variant="outline"
+                >
+                  Call us
+                </Button>
+                <LogoutBtn />
+              </Stack>
+            ) : (
+              <SignInBtn />
+            )}
           </DrawerBody>
         </DrawerContent>
       </Drawer>

@@ -1,4 +1,4 @@
-import { Avatar, Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { AvatarImg, DrawerComp, SignInBtn } from "../../comps/";
 import { useContext } from "react";
 import { AppContext } from "../../context/context";
