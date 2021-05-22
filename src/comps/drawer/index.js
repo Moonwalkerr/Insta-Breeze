@@ -1,6 +1,7 @@
 import { FiMenu } from "react-icons/fi";
 import { useDisclosure } from "@chakra-ui/hooks";
-
+import { MdBuild, MdCall } from "react-icons/md";
+import { RiDashboardLine } from "react-icons/ri";
 import {
   Drawer,
   DrawerBody,
@@ -11,6 +12,8 @@ import {
   IconButton,
   Box,
   Button,
+  Stack,
+  Text,
   //   DrawerCloseButton,
 } from "@chakra-ui/react";
 
@@ -46,11 +49,38 @@ const DrawerComp = () => {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+          <DrawerHeader
+            bg="var(--secondary)"
+            color="#fafafa"
+            borderBottomWidth="1px"
+          >
+            <Text fontSize="24px">Abhishek Mishra</Text>
+            <Text fontSize={12}> abhisk.mhra@gmail.com</Text>
+          </DrawerHeader>
           <DrawerBody>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+            <Stack spacing={4}>
+              <Button
+                leftIcon={<RiDashboardLine />}
+                colorScheme="purple"
+                variant="outline"
+              >
+                Dashboard
+              </Button>
+              <Button
+                leftIcon={<MdBuild />}
+                colorScheme="purple"
+                variant="outline"
+              >
+                Settings
+              </Button>
+              <Button
+                leftIcon={<RiDashboardLine />}
+                colorScheme="purple"
+                variant="outline"
+              >
+                Call us
+              </Button>
+            </Stack>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
