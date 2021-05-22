@@ -32,7 +32,7 @@ const Createpost = () => {
     const img_id = generateID(10);
     const storageRef = storage.ref(`images/${img_id}`);
     if (image_upload) {
-      await storageRef.put(image_upload).on(
+      storageRef.put(image_upload).on(
         "state_changed",
         (snapshot) => {
           setProgress(
@@ -40,8 +40,8 @@ const Createpost = () => {
           );
         },
         (error) => alert(error.message),
-        async () => {
-          let image_url = await storageRef.getDownloadURL();
+        () => {
+          let image_url = storageRef.getDownloadURL();
           let data = {
             userName: user.displayName,
             photoUrl: user.photoURL,

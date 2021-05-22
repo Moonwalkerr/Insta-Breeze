@@ -1,13 +1,22 @@
 import { Flex } from "@chakra-ui/layout";
 import { CreatePost } from "..";
-import { useContext } from "react";
-import { AppContext } from "../../context/context";
+import { useState, useEffect } from "react";
 import { Post } from "../../comps/";
 import { firestore } from "../../services/firebaseConfig";
 
 const PostFeeds = () => {
-  const posts = useContext(AppContext).posts[0];
-  const loading = useContext(AppContext).loading[0];
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    firestore
+      .collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setPosts(
+          snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
+        );
+      });
+  }, []);
 
   return (
     <Flex
@@ -18,24 +27,20 @@ const PostFeeds = () => {
       justifyContent="center"
     >
       <CreatePost />
-      {loading && <h1>Loading</h1>}
-      {firestore
-        .collection("posts")
-        .orderBy("timestamp", "desc")
-        .onSnapshot((snapshot) => {
-          snapshot.docs.map((docs) => (
-            <Post
-              key={docs.id}
-              id={docs.id}
-              caption={docs.data().caption}
-              userName={docs.data().userName}
-              timestamp={docs.data().timestamp}
-              photoUrL={docs.data().photoUrl}
-              imageUrL={docs.data().imageUrl}
-              likes={docs.data().likes}
-            />
-          ));
-        })}
+      {posts.map(({ id, post }) => {
+        return (
+          <Post
+            key={id}
+            id={id}
+            timestamp={post.timestamp}
+            imageUrl={post.imageUrl}
+            userName={post.userName}
+            photoUrL={post.photoUrl}
+            caption={post.caption}
+            comments={post.comments}
+          />
+        );
+      })}
     </Flex>
   );
 };
