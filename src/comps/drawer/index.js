@@ -4,6 +4,7 @@ import { MdBuild, MdCall } from "react-icons/md";
 import { RiDashboardLine } from "react-icons/ri";
 import { useContext } from "react";
 import { AppContext } from "../../context/context";
+import { useToast } from "@chakra-ui/react";
 import {
   Drawer,
   DrawerBody,
@@ -23,6 +24,19 @@ import { LogoutBtn, SignInBtn } from "..";
 const DrawerComp = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const user = useContext(AppContext).user[0];
+  const toast = useToast();
+
+  const showWIPToast = () => {
+    toast({
+      title: "Aw snap!",
+      position: "top",
+      description:
+        "Looks like you have cliked a Work in progress feature ! Sorry for the inconvenience",
+      status: "info",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
 
   return (
     <>
@@ -70,7 +84,9 @@ const DrawerComp = () => {
           <DrawerBody>
             {user ? (
               <Stack spacing={4}>
+                <LogoutBtn />
                 <Button
+                  onClick={showWIPToast}
                   leftIcon={<RiDashboardLine />}
                   colorScheme="purple"
                   variant="outline"
@@ -78,6 +94,7 @@ const DrawerComp = () => {
                   Dashboard
                 </Button>
                 <Button
+                  onClick={showWIPToast}
                   leftIcon={<MdBuild />}
                   colorScheme="purple"
                   variant="outline"
@@ -85,13 +102,13 @@ const DrawerComp = () => {
                   Settings
                 </Button>
                 <Button
+                  onClick={showWIPToast}
                   leftIcon={<MdCall />}
                   colorScheme="purple"
                   variant="outline"
                 >
                   Call us
                 </Button>
-                <LogoutBtn />
               </Stack>
             ) : (
               <SignInBtn />

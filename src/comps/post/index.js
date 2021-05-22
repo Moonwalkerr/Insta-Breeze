@@ -9,6 +9,7 @@ import CommentInput from "../commentInput";
 import { useContext } from "react";
 import { AppContext } from "../../context/context";
 const Post = ({
+  userId,
   id,
   caption,
   userName,
@@ -64,7 +65,7 @@ const Post = ({
             color="#fafafa"
           ></Text>
         </Flex>
-        <PostMenu key={id} id={id} />
+        {user && user.uid === userId && <PostMenu key={id} id={id} />}
       </Flex>
       {imageUrl ? (
         <Image
@@ -84,12 +85,15 @@ const Post = ({
         justifyContent="space-between"
       >
         <Text
+          textAlign="start"
+          float="left"
           mt={2}
           ml={2}
           color="purple.700"
-          fontSize="lg"
+          fontSize="sm"
           fontWeight="bold"
           lineHeight="short"
+          overflow="scroll"
         >
           {caption}
           {/* <p style={{ fontSize: "10px" }}>
