@@ -6,13 +6,20 @@ import { AppContext } from "../../context/context";
 const Navbar = () => {
   const user = useContext(AppContext).user[0];
   return (
-    <header styles={{ width: "100vw" }}>
+    <header
+      styles={{
+        width: "100vw",
+      }}
+    >
       <Flex
+        width="100%"
+        boxShadow="2px 3px 2px 5px rgba(0, 0, 0, 0.2)"
         color="#fafafafa"
         flex-direction
         p={4}
         justifyContent="space-between"
         bg="var(--secondary)"
+        mb={100}
       >
         <DrawerComp />
         <Heading
