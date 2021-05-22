@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Spacer, Text } from "@chakra-ui/layout";
-import { AvatarImg, Comment } from "..";
+import { AvatarImg, Comment, PostMenu } from "..";
 import "./styles.css";
 import { GrLike } from "react-icons/gr";
 import { firestore } from "../../services/firebaseConfig";
@@ -33,7 +33,6 @@ const Post = ({
 
   return (
     <Box
-      p={2}
       key={id}
       mb={5}
       bg="#fafafa"
@@ -44,20 +43,28 @@ const Post = ({
       maxW="700px"
       borderRadius="6"
     >
-      <Flex width="100%" borderRadius="6" align="center" bg="#49275B" p={1}>
-        <AvatarImg name={userName} src={photoUrL} />
-        <Text ml={2} fontSize="sm" fontWeight="bold" color="#fafafa">
-          {userName}
-        </Text>
-        <Text
-          float="right"
-          ml={340}
-          fontSize="10"
-          fontWeight="bold"
-          color="#fafafa"
-        >
-          {/* Firebase timestamp to Date() and removing time part */}
-        </Text>
+      <Flex
+        width="100%"
+        justifyContent="space-between"
+        borderRadius="6"
+        align="center"
+        bg="#49275B"
+        p={1}
+      >
+        <Flex align="center">
+          <AvatarImg name={userName} src={photoUrL} />
+          <Text ml={2} fontSize="sm" fontWeight="bold" color="#fafafa">
+            {userName}
+          </Text>
+          <Text
+            float="right"
+            ml={340}
+            fontSize="10"
+            fontWeight="bold"
+            color="#fafafa"
+          ></Text>
+        </Flex>
+        <PostMenu />
       </Flex>
       {imageUrl ? (
         <Image
