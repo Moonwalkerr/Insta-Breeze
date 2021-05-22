@@ -15,15 +15,14 @@ const AppContextProvder = (props) => {
     }
   });
 
-  function getPosts() {
-    let docs = [];
-    firestore
+  async function getPosts() {
+    await firestore
       .collection("posts")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) =>
-        snapshot.docs.map((doc) => docs.push({ id: doc.id, post: doc.data() }))
-      );
-    setPosts(docs);
+        setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      )
+      .catc((err) => alert(err.message));
   }
 
   useEffect(() => {
