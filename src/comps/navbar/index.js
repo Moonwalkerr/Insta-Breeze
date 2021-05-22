@@ -1,25 +1,21 @@
-import { Flex, Spacer, Text } from "@chakra-ui/react";
-import { SignInBtn } from "..";
+import { Flex, Heading, Text } from "@chakra-ui/react";
+import { DrawerComp, SignInBtn } from "..";
 import "./styles.css";
-
 const Navbar = () => {
   return (
     <header styles={{ width: "100vw" }}>
       <Flex
-        width="97%"
+        color="#fafafafa"
         flex-direction
-        p={20}
-        // justifyContent="space-around"
-        bg="var(--primary)"
+        p={4}
+        justifyContent="space-between"
+        bg="var(--secondary)"
       >
-        <Text letterSpacing={4}>Insta-Breeze</Text>
-        <Spacer />
-        <Text letterSpacing={4} fontSize={20}>
+        <DrawerComp />
+        <Heading letterSpacing={4} fontSize={20}>
           Insta-Breeze
-        </Text>
-        <Spacer />
+        </Heading>
         <SignInBtn />
-        {/* </nav> */}
       </Flex>
     </header>
   );
