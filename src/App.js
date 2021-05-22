@@ -1,9 +1,10 @@
 import "./App.css";
+import { Navbar } from "./comps";
 
 function App() {
   return (
     <div className="App">
-      <h2>Lets Build Insta-Breeze !</h2>
+      <Navbar />
     </div>
   );
 }
