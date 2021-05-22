@@ -15,6 +15,7 @@ serif;  : for headings and main text purposes  Font weight avail : 700, 700 ital
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 /* Color Pallets :
