@@ -16,6 +16,7 @@ import {
   Text,
   //   DrawerCloseButton,
 } from "@chakra-ui/react";
+import { LogoutBtn } from "..";
 
 const DrawerComp = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -80,6 +81,7 @@ const DrawerComp = () => {
               >
                 Call us
               </Button>
+              <LogoutBtn />
             </Stack>
           </DrawerBody>
         </DrawerContent>

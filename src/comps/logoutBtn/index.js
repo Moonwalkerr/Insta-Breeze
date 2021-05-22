@@ -8,19 +8,14 @@ const LogoutBtn = () => {
     await auth.signOut();
   };
   return (
-    <Box borderRadius="14px" _hover={{ bg: "var(--primary)" }}>
-      <Button
-        onClick={handleLogout}
-        fontSize={14}
-        letterSpacing={1}
-        color="var(--secondary)"
-        //   bg="#fafafa"
-        leftIcon={<FaSignOutAlt />}
-        variant="solid"
-      >
-        Logout
-      </Button>
-    </Box>
+    <Button
+      onClick={handleLogout}
+      leftIcon={<FaSignOutAlt />}
+      colorScheme="purple"
+      variant="outline"
+    >
+      Logout
+    </Button>
   );
 };
 
