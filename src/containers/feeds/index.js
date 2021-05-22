@@ -31,6 +31,7 @@ const PostFeeds = () => {
           <Post
             key={id}
             id={id}
+            userId={post.userId}
             likes={post.likes}
             timestamp={post.timestamp}
             imageUrl={post.imageUrl}

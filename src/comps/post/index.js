@@ -9,6 +9,7 @@ import CommentInput from "../commentInput";
 import { useContext } from "react";
 import { AppContext } from "../../context/context";
 const Post = ({
+  userId,
   id,
   caption,
   userName,
@@ -64,9 +65,7 @@ const Post = ({
             color="#fafafa"
           ></Text>
         </Flex>
-        {user && user.uiddisplayName === userName && (
-          <PostMenu key={id} id={id} />
-        )}
+        {user && user.uid === userId && <PostMenu key={id} id={id} />}
       </Flex>
       {imageUrl ? (
         <Image
