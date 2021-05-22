@@ -1,10 +1,10 @@
-import { CreatePost, Navbar } from "../../containers";
+import { Navbar, PostFeeds } from "../../containers";
 
 const HomePage = () => {
   return (
     <>
       <Navbar />
-      <CreatePost />
+      <PostFeeds />
     </>
   );
 };
