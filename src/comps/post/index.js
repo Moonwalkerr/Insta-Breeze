@@ -8,7 +8,7 @@ const Post = ({
   photoUrL,
   imageUrL,
   //   comments,
-  likes,
+  //   likes,
   timestamp,
 }) => {
   return (

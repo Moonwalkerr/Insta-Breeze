@@ -11,20 +11,20 @@ const PostFeeds = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    let document = [];
     setLoading(true);
     const unSubscribe = firestore
       .collection("posts")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
         snapshot.forEach((docs) => {
-          if (docs.data().userName) {
-            console.log(docs.data().userName);
-            setLoading(false);
-            posts.push({ ...docs.data() });
-          }
+          console.log(docs.data().caption);
+          setLoading(false);
+          document.push({ post: docs.data(), id: docs.id });
         });
+        setPosts(document);
+        console.log(posts.length);
       });
-    setPosts(posts);
     return () => unSubscribe(); // cleanup function
   }, [posts]);
 
@@ -39,18 +39,18 @@ const PostFeeds = () => {
       <CreatePost />
       {loading && <h1>Loading</h1>}
       {posts.length > 0 &&
-        posts.map((post) => {
-          console.log(post);
+        posts.map((data) => {
+          console.log(data);
           return (
             <Post
-              key={post.id}
-              id={post.id}
-              userName={post.userName}
-              timestamp={post.timestamp}
-              photoUrL={post.photoUrl}
-              imageUrL={post.imageUrl}
-              caption={post.caption}
-              // likes={post.likes}
+              key={data.id}
+              id={data.id}
+              userName={data.post.userName}
+              timestamp={data.post.timestamp}
+              photoUrL={data.post.photoUrl}
+              imageUrL={data.post.imageUrl}
+              caption={data.post.caption}
+              // likes={data.post.likes}
             />
           );
         })}
