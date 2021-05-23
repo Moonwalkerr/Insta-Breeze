@@ -8,6 +8,8 @@ import { firestore } from "../../services/firebaseConfig";
 import CommentInput from "../commentInput";
 import { useContext } from "react";
 import { AppContext } from "../../context/context";
+import { useMediaQuery } from "@chakra-ui/react";
+
 const Post = ({
   userId,
   id,
@@ -20,7 +22,6 @@ const Post = ({
   timestamp,
 }) => {
   // fetcing user's state from context layer
-
   const user = useContext(AppContext).user[0];
   // Adding like method
   const addLike = (postId) => {
@@ -32,6 +33,22 @@ const Post = ({
       });
   };
 
+  // For responsiveness
+  const [isLargerThan600, isLessThan450] = useMediaQuery([
+    "(min-width:600px)",
+    "(max-width:450px)",
+  ]);
+
+  const getContainerWidth = () => {
+    if (isLargerThan600) {
+      return "60vw";
+    }
+    if (isLessThan450) {
+      return "85vw";
+    } else {
+      return "75vw";
+    }
+  };
   return (
     <Box
       key={id}
@@ -40,8 +57,8 @@ const Post = ({
       _hover={{ boxShadow: "1px 2px 2px 6px rgba(0, 0, 0, 0.28)" }}
       boxShadow="1px 1px 3px 5px rgba(0, 0, 0, 0.18)"
       transition="box-shadow 0.3s"
-      minW="700px"
-      maxW="700px"
+      minW={getContainerWidth()}
+      maxW={getContainerWidth()}
       borderRadius="6"
     >
       <Flex
