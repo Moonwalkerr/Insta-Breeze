@@ -7,7 +7,7 @@
 - Create , Read, Update, Delete (CRUD) operations.
 - Comment and share your feedbacks on other peoples' posts.
 - Admins can delete the irrelevant posts.
-- More features WIP
+- Fully Responsive :- Mobile and desktop
   
 ## Tech Stacks :-
 - React JS
