@@ -3,7 +3,6 @@ import { CreatePost } from "..";
 import { useState, useEffect } from "react";
 import { Post } from "../../comps/";
 import { firestore } from "../../services/firebaseConfig";
-import { useMediaQuery } from "@chakra-ui/react";
 
 const PostFeeds = () => {
   const [posts, setPosts] = useState([]);
