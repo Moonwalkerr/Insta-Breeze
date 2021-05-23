@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const getHeadingFontSize = () => {
     if (isLargerThan528) {
-      return "2rem";
+      return "1.8rem";
     }
     if (isLargerThan400) {
       return "1.4rem";
