@@ -8,6 +8,7 @@ import { Flex, Spacer } from "@chakra-ui/react";
 import { FaUpload } from "react-icons/fa";
 import { firestore, storage, timestamp } from "../../services/firebaseConfig";
 import generateID from "../../helpers/functions";
+import { useMediaQuery } from "@chakra-ui/react";
 
 const Createpost = () => {
   const user = useContext(AppContext).user[0];
@@ -76,13 +77,30 @@ const Createpost = () => {
     setCaption("");
   }
 
+  // For responsiveness
+  const [isLargerThan600, isLessThan450] = useMediaQuery([
+    "(min-width:600px)",
+    "(max-width:450px)",
+  ]);
+
+  const getContainerWidth = () => {
+    if (isLargerThan600) {
+      return "65vw";
+    }
+    if (isLessThan450) {
+      return "85vw";
+    } else {
+      return "75vw";
+    }
+  };
+
   return (
     <Flex
       margin="2rem 0rem"
       className="create__post"
       borderRadius="10px"
       bg="#fafafa"
-      maxWidth="65vw"
+      maxWidth={getContainerWidth()}
     >
       {user ? (
         <Flex
