@@ -5,6 +5,7 @@ import { RiDashboardLine } from "react-icons/ri";
 import { useContext } from "react";
 import { AppContext } from "../../context/context";
 import { useToast } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
 import {
   Drawer,
   DrawerBody,
@@ -36,6 +37,41 @@ const DrawerComp = () => {
       duration: 2000,
       isClosable: true,
     });
+  };
+
+  // For responsiveness
+  const [isLargerThan528, isLargerThan400, isLargerThan340] = useMediaQuery([
+    "(min-width:528px)",
+    "(min-width:400px)",
+    "(min-width:340px)",
+  ]);
+
+  const getHeadingFontSize = () => {
+    if (isLargerThan528) {
+      return "1.5rem";
+    }
+    if (isLargerThan400) {
+      return "1.2rem";
+    }
+    if (isLargerThan340) {
+      return "1rem";
+    } else {
+      return "0.8rem";
+    }
+  };
+
+  const getSubHeadingFontSize = () => {
+    if (isLargerThan528) {
+      return "0.74rem";
+    }
+    if (isLargerThan400) {
+      return "0.68rem";
+    }
+    if (isLargerThan340) {
+      return "0.6rem";
+    } else {
+      return "0.4rem";
+    }
   };
 
   return (
@@ -74,8 +110,8 @@ const DrawerComp = () => {
           >
             {user ? (
               <>
-                <Text fontSize="24px">Abhishek Mishra</Text>
-                <Text fontSize={12}> abhisk.mhra@gmail.com</Text>
+                <Text fontSize={getHeadingFontSize()}>{user.displayName}</Text>
+                <Text fontSize={getSubHeadingFontSize()}>{user.email}</Text>
               </>
             ) : (
               <Text fontSize="24px">Please Sign in to Continue</Text>
