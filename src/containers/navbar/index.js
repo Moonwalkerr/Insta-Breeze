@@ -9,15 +9,7 @@ const Navbar = () => {
   const user = useContext(AppContext).user[0];
 
   // For responsiveness
-  const [
-    isLargerThan1200,
-    isLargerThan700,
-    isLargerThan528,
-    isLargerThan400,
-    isLargerThan340,
-  ] = useMediaQuery([
-    "(min-width:1200px)",
-    "(min-width:700px)",
+  const [isLargerThan528, isLargerThan400, isLargerThan340] = useMediaQuery([
     "(min-width:528px)",
     "(min-width:400px)",
     "(min-width:340px)",
