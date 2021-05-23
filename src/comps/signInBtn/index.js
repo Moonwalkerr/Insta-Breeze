@@ -57,7 +57,7 @@ const SignInBtn = () => {
   };
   return (
     <Button
-      p={isLargerThan650 ? "10px 20px" : "2px 26px"}
+      p={isLargerThan450 ? "10px 10px" : "2px 26px"}
       width={getButtonWidth()}
       onClick={signInWithGoogle}
       fontSize={getFontSize()}

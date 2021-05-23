@@ -4,7 +4,7 @@ import { MdBuild, MdCall } from "react-icons/md";
 import { RiDashboardLine } from "react-icons/ri";
 import { useContext } from "react";
 import { AppContext } from "../../context/context";
-import { useToast } from "@chakra-ui/react";
+import { Flex, useToast } from "@chakra-ui/react";
 import { useMediaQuery } from "@chakra-ui/react";
 import {
   Drawer,
@@ -40,11 +40,13 @@ const DrawerComp = () => {
   };
 
   // For responsiveness
-  const [isLargerThan528, isLargerThan400, isLargerThan340] = useMediaQuery([
-    "(min-width:528px)",
-    "(min-width:400px)",
-    "(min-width:340px)",
-  ]);
+  const [isLargerThan528, isLessThan450, isLargerThan400, isLargerThan340] =
+    useMediaQuery([
+      "(min-width:528px)",
+      "(max-width:450px)",
+      "(min-width:400px)",
+      "(min-width:340px)",
+    ]);
 
   const getHeadingFontSize = () => {
     if (isLargerThan528) {
@@ -100,7 +102,7 @@ const DrawerComp = () => {
           onClick={onOpen}
         />
       </Box>
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+      <Drawer size={"xs"} placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader
@@ -110,11 +112,23 @@ const DrawerComp = () => {
           >
             {user ? (
               <>
-                <Text fontSize={getHeadingFontSize()}>{user.displayName}</Text>
-                <Text fontSize={getSubHeadingFontSize()}>{user.email}</Text>
+                <Text
+                  fontFamily="Merriweather , sans-serif"
+                  fontSize={getHeadingFontSize()}
+                >
+                  {user.displayName}
+                </Text>
+                <Text
+                  fontFamily="Lora, sans-serif"
+                  fontSize={getSubHeadingFontSize()}
+                >
+                  {user.email}
+                </Text>
               </>
             ) : (
-              <Text fontSize="24px">Please Sign in to Continue</Text>
+              <Text fontFamily="Lora, sans-serif" fontSize="22px">
+                Please Sign in to Continue
+              </Text>
             )}
           </DrawerHeader>
           <DrawerBody>
@@ -147,7 +161,14 @@ const DrawerComp = () => {
                 </Button>
               </Stack>
             ) : (
-              <SignInBtn />
+              <Flex
+                fontFamily="Lora, sans-serif"
+                align="center"
+                justifyContent="space-evenly"
+              >
+                <SignInBtn />
+                {isLessThan450 && <h2>Sign In With Google</h2>}
+              </Flex>
             )}
           </DrawerBody>
         </DrawerContent>
