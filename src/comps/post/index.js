@@ -34,9 +34,10 @@ const Post = ({
   };
 
   // For responsiveness
-  const [isLargerThan600, isLessThan450] = useMediaQuery([
+  const [isLargerThan600, isLessThan450, isLessThan400] = useMediaQuery([
     "(min-width:600px)",
     "(max-width:450px)",
+    "(max-width:400px)",
   ]);
 
   const getContainerWidth = () => {
@@ -49,6 +50,7 @@ const Post = ({
       return "75vw";
     }
   };
+
   return (
     <Box
       key={id}
@@ -71,16 +73,14 @@ const Post = ({
       >
         <Flex align="center">
           <AvatarImg name={userName} src={photoUrL} />
-          <Text ml={2} fontSize="sm" fontWeight="bold" color="#fafafa">
-            {userName}
-          </Text>
           <Text
-            float="right"
-            ml={340}
-            fontSize="10"
+            ml={2}
+            fontSize={isLessThan400 ? "12px" : "sm"}
             fontWeight="bold"
             color="#fafafa"
-          ></Text>
+          >
+            {userName}
+          </Text>
         </Flex>
         {user && user.uid === userId && <PostMenu key={id} id={id} />}
       </Flex>
